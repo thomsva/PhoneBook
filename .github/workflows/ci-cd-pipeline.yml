@@ -20,8 +20,8 @@ jobs:
         run: | 
           cd frontend
           npm install
-          npm run build:frontend
           cd ..
+          npm run build:frontend
       - name: deploy to heroku
         if: ${{ github.event_name == 'push' }}
         uses: akhileshns/heroku-deploy@v3.12.12 
