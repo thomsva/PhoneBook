@@ -1,9 +1,13 @@
 const mongoose = require('mongoose')
 require('dotenv').config()
 
-const url = process.env.MONGODB_URI
+const uri = process.env.MONGODB_URI
 
-mongoose.connect(url, { useNewUrlParser: true })
+if (!uri) {
+  throw new Error('Missing MONGODB_URI')
+}
+
+mongoose.connect(uri, { useNewUrlParser: true })
 
 const personSchema = new mongoose.Schema({
   name: String,
