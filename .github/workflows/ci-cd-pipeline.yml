@@ -13,15 +13,15 @@ jobs:
         with:
           node-version: '16'
       - name: npm install 
-        run: npm install  
-      - name: lint
-        run: npm run lint
-      - name: build frontend
-        run: | 
+        run: |
+          npm install  
           cd frontend
           npm install
           cd ..
-          npm run build:frontend
+      - name: lint
+        run: npm run lint
+      - name: build frontend
+        run: npm run build:frontend
       - name: deploy to heroku
         if: ${{ github.event_name == 'push' }}
         uses: akhileshns/heroku-deploy@v3.12.12 
