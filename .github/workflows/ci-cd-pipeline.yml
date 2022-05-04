@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
 jobs:
-  deployment_pipeline:
+  ci-cd_pipeline:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
@@ -30,7 +30,7 @@ jobs:
       - name: rm frontend
         run: rm -r frontend
       - name: deploy to heroku
-        if: ${{ github.event_name == 'push' }}
+        if: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, '#skip') }}
         uses: akhileshns/heroku-deploy@v3.12.12 
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
@@ -42,3 +42,15 @@ jobs:
         env:
           HD_MONGODB_URI: ${{secrets.MONGODB_URI}}
 
+  tag_release:
+    needs: [ci-cd_pipeline]
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: bump version and push tag
+        if: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, '#skip') }}
+        uses: anothrNick/github-tag-action@1.36.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          DEFAULT_BUMP: patch
+          RELEASE_BRANCHES: main
