@@ -17,9 +17,11 @@ jobs:
       - name: lint
         run: npm run lint
       - name: build frontend
-        run: cd frontend
-        run: npm install
-        run: npm run build:frontend
+        run: | 
+          cd frontend
+          npm install
+          npm run build:frontend
+          cd ..
       - name: deploy to heroku
         if: ${{ github.event_name == 'push' }}
         uses: akhileshns/heroku-deploy@v3.12.12 
