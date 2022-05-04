@@ -21,7 +21,7 @@ app.use(morgan(':method :url :status :res[content-length] - :response-time ms :j
 //routes
 
 app.get('/', (req, res) => {
-  res.sendfile('/build/index.html')
+  res.sendFile(__dirname + '/build/index.html')
 })
 
 app.get('/health', (req, res) => {
