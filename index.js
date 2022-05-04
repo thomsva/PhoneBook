@@ -7,7 +7,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const morgan = require('morgan')
 const Person = require('./models/person')
-
+var path = require('path')
 
 //middleware
 
@@ -20,8 +20,10 @@ app.use(morgan(':method :url :status :res[content-length] - :response-time ms :j
 
 //routes
 
+app.use(express.static(path.join(__dirname, 'dist')))
+
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/build/index.html')
+  res.sendFile(path.join(__dirname, 'dist/index.html'))
 })
 
 app.get('/health', (req, res) => {
