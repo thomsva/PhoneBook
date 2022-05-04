@@ -1,0 +1,14 @@
+name: CI/CD pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: Hello
+        run: echo Hello, world!
+
