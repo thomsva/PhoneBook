@@ -32,4 +32,6 @@ jobs:
           healthcheck: "https://phonebook911.herokuapp.com/health"
           checkstring: "ok"
           rollbackonhealthcheckfailed: false
+        env:
+          MONGODB_URI: ${{secrets.MONGODB_URI}}
 
