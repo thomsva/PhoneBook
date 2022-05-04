@@ -14,7 +14,7 @@ const Person = require('./models/person')
 app.use(cors())
 app.use(express.static('build'))  //directory to look for static files
 app.use(bodyParser.json())
-morgan.token('json-data', (req, res) => JSON.stringify(req.body))
+morgan.token('json-data', (req) => JSON.stringify(req.body))
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :json-data'))
 
 
@@ -33,7 +33,7 @@ app.get('/api/persons', (request, response, next) => {
 
 app.get('/api/persons/:id', (request, response, next) => {
   const id = request.params.id
-  console.log('requested person', id)
+
   Person.findById(id)
     .then(person => {
       response.json(person.toJSON())
@@ -43,7 +43,7 @@ app.get('/api/persons/:id', (request, response, next) => {
 
 app.delete('/api/persons/:id', (request, response, next) => {
   Person.findByIdAndRemove(request.params.id)
-    .then(result => {
+    .then(() => {
       response.status(204).end()
     })
     .catch(error => next(error))
@@ -51,7 +51,7 @@ app.delete('/api/persons/:id', (request, response, next) => {
 
 app.post('/api/persons', (request, response, next) => {
   const body = request.body
-  console.log(body)
+
 
   if (body.name === undefined) {
     return response.status(400).json({
@@ -110,6 +110,7 @@ app.get('/info', (request, response, next) => {
 //error handler
 
 const errorHandler = (error, request, response, next) => {
+  // eslint-disable-next-line no-console
   console.error(error.message)
   if (error.name === 'CastError' && error.kind == 'ObjectId') {
     return response.status(400).send({ error: 'malformatted id' })
@@ -125,5 +126,6 @@ app.use(errorHandler)
 
 const PORT = process.env.PORT
 app.listen(PORT, () => {
+  // eslint-disable-next-line no-console
   console.log(`Server running on port ${PORT}`)
 })
