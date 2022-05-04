@@ -24,6 +24,10 @@ app.get('/', (req, res) => {
   res.sendfile(__dirname + '/build/index.html')
 })
 
+app.get('/health', res => {
+  res.send('ok')
+})
+
 app.get('/api/persons', (request, response, next) => {
   Person.find({}).then(persons => {
     response.json(persons)
