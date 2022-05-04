@@ -34,9 +34,10 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "phonebook911" 
           heroku_email: ${{secrets.HEROKU_EMAIL}}
+          appdir: "build"
           healthcheck: "https://phonebook911.herokuapp.com/health"
           checkstring: "ok"
-          rollbackonhealthcheckfailed: false
+          rollbackonhealthcheckfailed: true
         env:
           HD_MONGODB_URI: ${{secrets.MONGODB_URI}}
 
