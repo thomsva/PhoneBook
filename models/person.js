@@ -5,7 +5,7 @@ mongoose.set('useFindAndModify', false)
 
 const uri = process.env.MONGODB_URI
 
-if (!uri) {
+if (!uri && process.env.NODE_ENV !== 'test') {
   throw new Error('Missing MONGODB_URI')
 }
 
