@@ -1,5 +1,5 @@
 # PhoneBook
-[![CI/CD pipeline](https://github.com/thomsva/PhoneBook/actions/workflows/ci-cd-pipeline.yml/badge.svg)](https://github.com/thomsva/PhoneBook/actions/workflows/ci-cd-pipeline.yml)
+[![CI/CD pipeline](https://github.com/thomsva/PhoneBook/actions/workflows/ci-cd-pipeline.yml/badge.svg)](https://github.com/thomsva/PhoneBook/actions/workflows/ci-cd-pipeline.yml) [![Healthcheck](https://github.com/thomsva/PhoneBook/actions/workflows/healthcheck.yml/badge.svg)](https://github.com/thomsva/PhoneBook/actions/workflows/healthcheck.yml)
 
 ## Running the app locally
 - Run `npm install` in the root directory and frontend directory
