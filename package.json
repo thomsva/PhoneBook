@@ -8,7 +8,10 @@
     "watch": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:frontend": "cd frontend && npm run build && cp -r ./build ../build",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "cypress:open": "cypress open",
+    "start:test": "NODE_ENV=test node index.js",
+    "test:e2e": "cypress run"
   },
   "author": "",
   "license": "ISC",
@@ -21,7 +24,11 @@
     "morgan": "^1.9.1"
   },
   "devDependencies": {
+    "cypress": "^9.6.0",
     "eslint": "^8.14.0",
+    "eslint-plugin-cypress": "^2.12.1",
+    "eslint-plugin-jest": "^26.1.5",
+    "eslint-plugin-react": "^7.29.4",
     "nodemon": "^1.18.9"
   }
 }
