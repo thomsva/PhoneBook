@@ -33,5 +33,5 @@ jobs:
           checkstring: "ok"
           rollbackonhealthcheckfailed: false
         env:
-          MONGODB_URI: ${{secrets.MONGODB_URI}}
+          HD_MONGODB_URI: ${{secrets.MONGODB_URI}}
 
