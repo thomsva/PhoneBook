@@ -22,13 +22,14 @@ jobs:
         run: npm run lint
       - name: build frontend
         run: npm run build:frontend
-      - name: ls
-        run: | 
-          ls -la
-          cd build
-          ls -la
-      - name: rm frontend
-        run: rm -r frontend
+      - name: e2e tests
+        uses: cypress-io/github-action@v2
+        with:
+          browser: chrome
+          headless: true
+          start: npm run start:test
+          command: npm run test:e2e
+          wait-on: http://localhost:3000
       - name: deploy to heroku
         if: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, '#skip') }}
         uses: akhileshns/heroku-deploy@v3.12.12 
